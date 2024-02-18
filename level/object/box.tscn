@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://botvupwdhx8gq"]
+
+[ext_resource type="PackedScene" uid="uid://bibmc0hqgglxc" path="res://level/object/floor.tscn" id="1_vucvx"]
+
+[node name="Box" type="Node3D"]
+
+[node name="Floor" parent="." instance=ExtResource("1_vucvx")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 10)
+collision_layer = 16
+
+[node name="Floor2" parent="." instance=ExtResource("1_vucvx")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -10)
+collision_layer = 16
+
+[node name="Floor3" parent="." instance=ExtResource("1_vucvx")]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -10, 0, 0.103)
+collision_layer = 16

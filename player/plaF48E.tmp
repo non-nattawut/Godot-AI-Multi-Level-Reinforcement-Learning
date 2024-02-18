@@ -1,0 +1,225 @@
+[gd_scene load_steps=12 format=3 uid="uid://c4jyt8la6i0pi"]
+
+[ext_resource type="Script" path="res://player/Player.gd" id="1_qhju6"]
+[ext_resource type="Script" path="res://addons/godot_rl_agents/sensors/sensors_3d/RaycastSensor3D.gd" id="2_hxjse"]
+[ext_resource type="Script" path="res://player/player_ai_controller.gd" id="3_0x3c5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fj2g1"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jb2lc"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aiqwe"]
+albedo_color = Color(0.0666667, 0.419608, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_dkssg"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_bra0y"]
+radius = 0.05
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_275a2"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7bumf"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.05
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ntoff"]
+size = Vector3(2, 2, 2)
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 8
+collision_mask = 17
+platform_floor_layers = 1
+platform_wall_layers = 16
+script = ExtResource("1_qhju6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_fj2g1")
+
+[node name="AIController3D" type="Node3D" parent="."]
+script = ExtResource("3_0x3c5")
+
+[node name="Sensors" type="Node3D" parent="."]
+
+[node name="WallSensor" type="Node3D" parent="Sensors"]
+script = ExtResource("2_hxjse")
+n_rays_width = 16.0
+n_rays_height = 1.0
+cone_width = 360.0
+cone_height = 0.0
+
+[node name="@RayCast3D@34622" type="RayCast3D" parent="Sensors/WallSensor"]
+target_position = Vector3(-1.9509, 0, -9.80785)
+
+[node name="@RayCast3D@34623" type="RayCast3D" parent="Sensors/WallSensor"]
+target_position = Vector3(-5.5557, 0, -8.3147)
+
+[node name="@RayCast3D@34624" type="RayCast3D" parent="Sensors/WallSensor"]
+target_position = Vector3(-8.3147, 0, -5.5557)
+
+[node name="@RayCast3D@34625" type="RayCast3D" parent="Sensors/WallSensor"]
+target_position = Vector3(-9.80785, 0, -1.9509)
+
+[node name="@RayCast3D@34626" type="RayCast3D" parent="Sensors/WallSensor"]
+target_position = Vector3(-9.80785, 0, 1.9509)
+
+[node name="@RayCast3D@34627" type="RayCast3D" parent="Sensors/WallSensor"]
+target_position = Vector3(-8.3147, 0, 5.5557)
+
+[node name="node_6 0" type="RayCast3D" parent="Sensors/WallSensor"]
+target_position = Vector3(-5.5557, 0, 8.3147)
+
+[node name="node_7 0" type="RayCast3D" parent="Sensors/WallSensor"]
+target_position = Vector3(-1.9509, 0, 9.80785)
+
+[node name="node_8 0" type="RayCast3D" parent="Sensors/WallSensor"]
+target_position = Vector3(1.9509, 0, 9.80785)
+
+[node name="node_9 0" type="RayCast3D" parent="Sensors/WallSensor"]
+target_position = Vector3(5.5557, 0, 8.3147)
+
+[node name="node_10 0" type="RayCast3D" parent="Sensors/WallSensor"]
+target_position = Vector3(8.3147, 0, 5.5557)
+
+[node name="node_11 0" type="RayCast3D" parent="Sensors/WallSensor"]
+target_position = Vector3(9.80785, 0, 1.9509)
+
+[node name="node_12 0" type="RayCast3D" parent="Sensors/WallSensor"]
+target_position = Vector3(9.80785, 0, -1.9509)
+
+[node name="node_13 0" type="RayCast3D" parent="Sensors/WallSensor"]
+target_position = Vector3(8.3147, 0, -5.5557)
+
+[node name="node_14 0" type="RayCast3D" parent="Sensors/WallSensor"]
+target_position = Vector3(5.5557, 0, -8.3147)
+
+[node name="node_15 0" type="RayCast3D" parent="Sensors/WallSensor"]
+target_position = Vector3(1.9509, 0, -9.80785)
+
+[node name="FloorSensor" type="Node3D" parent="Sensors"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+script = ExtResource("2_hxjse")
+n_rays_width = 5.0
+n_rays_height = 5.0
+ray_length = 5.0
+cone_width = 120.0
+cone_height = 120.0
+
+[node name="@RayCast3D@70655" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(-2.4863, -3.71572, 2.23868)
+
+[node name="@RayCast3D@70656" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(-3.39448, -2.03368, 3.05641)
+
+[node name="@RayCast3D@70657" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(-3.71572, 0, 3.34565)
+
+[node name="@RayCast3D@70658" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(-3.39448, 2.03368, 3.05641)
+
+[node name="@RayCast3D@70659" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(-2.4863, 3.71572, 2.23868)
+
+[node name="@RayCast3D@70660" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(-1.3608, -3.71572, 3.05641)
+
+[node name="@RayCast3D@70661" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(-1.85786, -2.03368, 4.17283)
+
+[node name="@RayCast3D@70662" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(-2.03368, 0, 4.56773)
+
+[node name="@RayCast3D@70663" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(-1.85786, 2.03368, 4.17283)
+
+[node name="@RayCast3D@70664" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(-1.3608, 3.71572, 3.05641)
+
+[node name="@RayCast3D@70665" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(0, -3.71572, 3.34565)
+
+[node name="@RayCast3D@70666" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(0, -2.03368, 4.56773)
+
+[node name="@RayCast3D@70667" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(0, 0, 5)
+
+[node name="@RayCast3D@70668" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(0, 2.03368, 4.56773)
+
+[node name="@RayCast3D@70669" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(0, 3.71572, 3.34565)
+
+[node name="@RayCast3D@70670" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(1.3608, -3.71572, 3.05641)
+
+[node name="@RayCast3D@70671" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(1.85786, -2.03368, 4.17283)
+
+[node name="@RayCast3D@70672" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(2.03368, 0, 4.56773)
+
+[node name="@RayCast3D@70673" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(1.85786, 2.03368, 4.17283)
+
+[node name="@RayCast3D@70674" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(1.3608, 3.71572, 3.05641)
+
+[node name="@RayCast3D@70675" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(2.4863, -3.71572, 2.23868)
+
+[node name="@RayCast3D@70676" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(3.39448, -2.03368, 3.05641)
+
+[node name="@RayCast3D@70677" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(3.71572, 0, 3.34565)
+
+[node name="@RayCast3D@70678" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(3.39448, 2.03368, 3.05641)
+
+[node name="@RayCast3D@70679" type="RayCast3D" parent="Sensors/FloorSensor"]
+target_position = Vector3(2.4863, 3.71572, 2.23868)
+
+[node name="Visual" type="Node3D" parent="."]
+
+[node name="Body" type="MeshInstance3D" parent="Visual"]
+mesh = SubResource("BoxMesh_jb2lc")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_aiqwe")
+
+[node name="LeftEye" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.215435, 0.182572, -0.956547)
+mesh = SubResource("SphereMesh_dkssg")
+
+[node name="LeftEye2" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.215435, 0.182572, -1.018)
+mesh = SubResource("SphereMesh_bra0y")
+surface_material_override/0 = SubResource("StandardMaterial3D_275a2")
+
+[node name="RightEye2" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.199297, 0.182572, -1.01187)
+mesh = SubResource("SphereMesh_bra0y")
+surface_material_override/0 = SubResource("StandardMaterial3D_275a2")
+
+[node name="RightEye" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.201107, 0.182572, -0.948831)
+mesh = SubResource("SphereMesh_dkssg")
+
+[node name="Mouth" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 0.851269, 0.524729, 0, -0.524729, 0.851269, 0, -0.038113, -0.989829)
+mesh = SubResource("CylinderMesh_7bumf")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_ntoff")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

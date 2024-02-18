@@ -1,0 +1,183 @@
+[gd_scene load_steps=9 format=3 uid="uid://cq82q2673ior5"]
+
+[ext_resource type="Script" path="res://level/level_manager.gd" id="1_drsiy"]
+[ext_resource type="Script" path="res://level/Level.gd" id="2_4dag1"]
+[ext_resource type="PackedScene" uid="uid://bibmc0hqgglxc" path="res://level/object/floor.tscn" id="2_7ylre"]
+[ext_resource type="PackedScene" uid="uid://ddfm0k23ohoc1" path="res://level/object/start.tscn" id="2_47nc6"]
+[ext_resource type="PackedScene" uid="uid://crnm6x8dijpfx" path="res://level/object/goal.tscn" id="3_3u5qe"]
+[ext_resource type="PackedScene" uid="uid://cm3ndwxfxoyts" path="res://level/object/cube.tscn" id="6_ps3ru"]
+[ext_resource type="PackedScene" uid="uid://botvupwdhx8gq" path="res://level/object/box.tscn" id="6_vo341"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lkvak"]
+size = Vector3(129.516, 1, 407.547)
+
+[node name="LevelManager" type="Node3D" node_paths=PackedStringArray("level_node")]
+script = ExtResource("1_drsiy")
+level_node = [NodePath("Level1"), NodePath("Level2"), NodePath("Level3"), NodePath("Level4"), NodePath("Level5")]
+
+[node name="DeadZone" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeadZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52873, -4.31385, -178.728)
+shape = SubResource("BoxShape3D_lkvak")
+
+[node name="Level1" type="Node3D" parent="." node_paths=PackedStringArray("start", "goal")]
+script = ExtResource("2_4dag1")
+start = NodePath("Start")
+goal = NodePath("Goal")
+
+[node name="Start" type="Node3D" parent="Level1"]
+
+[node name="Start1" parent="Level1/Start" instance=ExtResource("2_47nc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 7)
+
+[node name="Start2" parent="Level1/Start" instance=ExtResource("2_47nc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.6, 7)
+
+[node name="Start3" parent="Level1/Start" instance=ExtResource("2_47nc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.6, 7)
+
+[node name="Goal" parent="Level1" instance=ExtResource("3_3u5qe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -7)
+collision_mask = 8
+
+[node name="Object" type="Node3D" parent="Level1"]
+
+[node name="Floor" parent="Level1/Object" instance=ExtResource("2_7ylre")]
+
+[node name="Box" parent="Level1/Object" instance=ExtResource("6_vo341")]
+
+[node name="Level2" type="Node3D" parent="." node_paths=PackedStringArray("start", "goal")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
+script = ExtResource("2_4dag1")
+start = NodePath("Start")
+goal = NodePath("Goal")
+
+[node name="Start" type="Node3D" parent="Level2"]
+
+[node name="Start1" parent="Level2/Start" instance=ExtResource("2_47nc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 7)
+
+[node name="Start2" parent="Level2/Start" instance=ExtResource("2_47nc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.6, 7)
+
+[node name="Start3" parent="Level2/Start" instance=ExtResource("2_47nc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.6, 7)
+
+[node name="Goal" parent="Level2" instance=ExtResource("3_3u5qe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -7)
+collision_mask = 8
+
+[node name="Object" type="Node3D" parent="Level2"]
+
+[node name="Floor" parent="Level2/Object" instance=ExtResource("2_7ylre")]
+
+[node name="Cube" parent="Level2/Object" instance=ExtResource("6_ps3ru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="Box" parent="Level2/Object" instance=ExtResource("6_vo341")]
+
+[node name="Level3" type="Node3D" parent="." node_paths=PackedStringArray("start", "goal")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -80)
+script = ExtResource("2_4dag1")
+start = NodePath("Start")
+goal = NodePath("Goal")
+
+[node name="Start" type="Node3D" parent="Level3"]
+
+[node name="Start1" parent="Level3/Start" instance=ExtResource("2_47nc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 7)
+
+[node name="Start2" parent="Level3/Start" instance=ExtResource("2_47nc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.6, 7)
+
+[node name="Start3" parent="Level3/Start" instance=ExtResource("2_47nc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.6, 7)
+
+[node name="Goal" parent="Level3" instance=ExtResource("3_3u5qe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.6, -7)
+collision_mask = 8
+
+[node name="Object" type="Node3D" parent="Level3"]
+
+[node name="Floor" parent="Level3/Object" instance=ExtResource("2_7ylre")]
+
+[node name="Cube" parent="Level3/Object" instance=ExtResource("6_ps3ru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="Cube2" parent="Level3/Object" instance=ExtResource("6_ps3ru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.5, 0)
+
+[node name="Box" parent="Level3/Object" instance=ExtResource("6_vo341")]
+
+[node name="Level4" type="Node3D" parent="." node_paths=PackedStringArray("start", "goal")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -120)
+script = ExtResource("2_4dag1")
+start = NodePath("Start")
+goal = NodePath("Goal")
+
+[node name="Start" type="Node3D" parent="Level4"]
+
+[node name="Start1" parent="Level4/Start" instance=ExtResource("2_47nc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 7)
+
+[node name="Start2" parent="Level4/Start" instance=ExtResource("2_47nc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.6, 7)
+
+[node name="Goal" parent="Level4" instance=ExtResource("3_3u5qe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.6, -7)
+collision_mask = 8
+
+[node name="Object" type="Node3D" parent="Level4"]
+
+[node name="Floor" parent="Level4/Object" instance=ExtResource("2_7ylre")]
+
+[node name="Cube" parent="Level4/Object" instance=ExtResource("6_ps3ru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="Cube3" parent="Level4/Object" instance=ExtResource("6_ps3ru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2.5, 0)
+
+[node name="Cube2" parent="Level4/Object" instance=ExtResource("6_ps3ru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.5, 0)
+
+[node name="Box" parent="Level4/Object" instance=ExtResource("6_vo341")]
+
+[node name="Level5" type="Node3D" parent="." node_paths=PackedStringArray("start", "goal")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -160)
+script = ExtResource("2_4dag1")
+start = NodePath("Start")
+goal = NodePath("Goal")
+is_last_level = true
+
+[node name="Start" type="Node3D" parent="Level5"]
+
+[node name="Start1" parent="Level5/Start" instance=ExtResource("2_47nc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 7)
+
+[node name="Start2" parent="Level5/Start" instance=ExtResource("2_47nc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.6, 7)
+
+[node name="Start3" parent="Level5/Start" instance=ExtResource("2_47nc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.6, 7)
+
+[node name="Goal" parent="Level5" instance=ExtResource("3_3u5qe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -7)
+collision_mask = 8
+
+[node name="Object" type="Node3D" parent="Level5"]
+
+[node name="Floor" parent="Level5/Object" instance=ExtResource("2_7ylre")]
+
+[node name="Cube" parent="Level5/Object" instance=ExtResource("6_ps3ru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="Cube3" parent="Level5/Object" instance=ExtResource("6_ps3ru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2.5, 0)
+
+[node name="Cube2" parent="Level5/Object" instance=ExtResource("6_ps3ru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.5, 0)
+
+[node name="Box" parent="Level5/Object" instance=ExtResource("6_vo341")]

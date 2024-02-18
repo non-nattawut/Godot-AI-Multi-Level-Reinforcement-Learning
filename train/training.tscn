@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://crtljyqrwrrkn"]
+
+[ext_resource type="Script" path="res://train/training.gd" id="1_jn5vw"]
+[ext_resource type="PackedScene" uid="uid://drv0ighpr802n" path="res://train/game_scene.tscn" id="2_ighjn"]
+[ext_resource type="Script" path="res://ui/QuitButton.gd" id="3_c7kq2"]
+[ext_resource type="Script" path="res://addons/godot_rl_agents/sync.gd" id="3_r72gf"]
+
+[sub_resource type="Environment" id="Environment_ay2gb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b2nnc"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_pyqi7"]
+font_size = 64
+
+[node name="Training" type="Node3D"]
+script = ExtResource("1_jn5vw")
+
+[node name="GameScene" parent="." instance=ExtResource("2_ighjn")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ay2gb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.277466, 0.960736, 0, -0.960736, 0.277466, 0, 9.37626, 13.4203)
+light_energy = 4.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 89.0
+offset_top = 72.0
+offset_right = 207.0
+offset_bottom = 160.0
+text = "test"
+label_settings = SubResource("LabelSettings_b2nnc")
+
+[node name="WinControl" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/WinControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = 47.5
+offset_bottom = 78.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+text = "Quit Game"
+script = ExtResource("3_c7kq2")
+
+[node name="Message" type="Label" parent="CanvasLayer/WinControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.5
+offset_top = -44.0
+offset_right = 136.5
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You Win!"
+label_settings = SubResource("LabelSettings_pyqi7")
+
+[node name="Sync" type="Node" parent="."]
+script = ExtResource("3_r72gf")
+control_mode = 2
+onnx_model_path = "res://model.onnx"
+
+[connection signal="button_up" from="CanvasLayer/WinControl/QuitButton" to="CanvasLayer/WinControl/QuitButton" method="_on_button_up"]
